@@ -386,9 +386,9 @@ class HunyuanVideoFlashAttnProcessorTripleTrain(HunyuanVideoFlashAttnProcessor):
 
         # # 5.3 Sliding attention, (B, H, S, D)
         sliding_hidden_states, sliding_encoder_hidden_states = self._step_sliding_attention(
-            query, key, value, attention_mask, text_seq_length,
+            query, key, value, text_seq_length,
             flex_attn_mask_func,
-            window_size, tile_size, latent_shape
+            tile_size, latent_shape
         )
         # logger.debug(f"5. Sliding window attn: sliding_hidden_states: {sliding_hidden_states.shape}")
 
@@ -586,8 +586,8 @@ class HunyuanVideoFlashAttnProcessorTripleEval(HunyuanVideoFlashAttnProcessorTri
             sliding_encoder_hidden_states = None
         else:
             sliding_hidden_states, sliding_encoder_hidden_states = self._step_sliding_attention(
-                sw_query, sw_key, sw_value, attention_mask, text_seq_length,
-                flex_attn_mask_func, window_size, tile_size, latent_shape,
+                sw_query, sw_key, sw_value, text_seq_length,
+                flex_attn_mask_func, tile_size, latent_shape,
             )
 
         # # 5.4 Combine attention

@@ -30,7 +30,7 @@ from ..train import load_router_checkpoint
 from ..ulysses import SP_STATE
 from ..utils import accumulate_loss
 from .outputs import RoutedTransformerModelOutput
-from .router import Router, TimeIndependentRouter
+from .router import Router
 
 logger = logging.getLogger(__name__)
 

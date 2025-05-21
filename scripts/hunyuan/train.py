@@ -167,7 +167,6 @@ def main():
     
     # Log args
     args_json = deepcopy(args)
-    args_json.router_dtype = dtype_to_str(args.router_dtype)
     logger.info(arg_to_json(args_json))
 
     # Initialize distributed environment
@@ -243,8 +242,8 @@ def main():
         transformer, device_id=device, 
         sharding_strategy=args.fsdp_sharding_startegy, use_cpu_offload=args.use_cpu_offload
     )
-    num_trainable_params = sum(p.numel() for p in transformer.parameters() if p.requires_grad)
-    logger.info(f"Total trainable parameters per FSDP shard = {num_trainable_params:,}")
+    # num_trainable_params = sum(p.numel() for p in transformer.parameters() if p.requires_grad)
+    # logger.info(f"Total trainable parameters per FSDP shard = {num_trainable_params:,}")
 
     if args.gradient_checkpointing:
         transformer.enable_gradient_checkpointing()

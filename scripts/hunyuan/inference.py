@@ -92,8 +92,9 @@ def load_model(args: Namespace, device: torch.device):
         args.pretrained_model_path, subfolder="transformer", torch_dtype=torch.bfloat16
     )
     pipeline: HunyuanVideoPipeline = HunyuanVideoPipeline.from_pretrained(
-        args.pretrained_model_path, transformer=transformer, torch_dtype=torch.float16,
+        args.pretrained_model_path, transformer=transformer,
         # tokenizer=None, text_encoder=None, tokenizer_2=None, text_encoder_2=None,
+        torch_dtype=torch.float16,
     )
     pipeline.scheduler._shift = args.noise_scheduler_shift
     pipeline.vae.enable_tiling()
@@ -113,8 +114,7 @@ def load_model(args: Namespace, device: torch.device):
         apply_vorta_transformer(
             pipeline.transformer,
             checkpoint_file=args.resume / 'router.pt',
-            attn_processor_kwargs=model_config['attn_processor_kwargs'],
-            router_dtype=str_to_dtype(model_config['router_dtype']),
+            router_dtype=torch.bfloat16,
         )
         self_attention_kwargs = prepare_hunyuan_self_attn_kwargs(
             model_config['self_attention_kwargs'], device, args.tau_sparse)

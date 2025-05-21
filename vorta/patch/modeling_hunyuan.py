@@ -34,9 +34,8 @@ from ..attention.sliding_attn_flex import create_sliding_tile_attn_mask_func
 from ..train import load_router_checkpoint
 from ..ulysses import SP_STATE
 from ..utils import accumulate_loss
-from .outputs import BenchmarkedTransformerModelOutput, RoutedTransformerModelOutput
+from .outputs import RoutedTransformerModelOutput
 from .router import Router
-from .utils import get_sta_attn_kwargs, update_benchmark_results
 
 logger = logging.getLogger(__name__)
 
@@ -265,7 +264,7 @@ def hunyuan_transformer_3d_routed_forward(
                 token_replace_emb,
                 first_frame_num_tokens,
                 False, # use_original_attn
-                get_sta_attn_kwargs(self_attention_kwargs, transformer_block_index),
+                self_attention_kwargs,
                 clean_timesteps_emb,
             )
             if return_routing_scores:
@@ -306,7 +305,7 @@ def hunyuan_transformer_3d_routed_forward(
                 token_replace_emb,
                 first_frame_num_tokens,
                 False, # use_original_attn=
-                get_sta_attn_kwargs(self_attention_kwargs, transformer_block_index),
+                self_attention_kwargs,
                 clean_timesteps_emb,
             )
             if return_routing_scores:
@@ -347,7 +346,7 @@ def hunyuan_transformer_3d_routed_forward(
                 token_replace_emb,
                 first_frame_num_tokens,
                 use_original_attn=False,
-                self_attention_kwargs=get_sta_attn_kwargs(self_attention_kwargs, transformer_block_index),
+                self_attention_kwargs=self_attention_kwargs,
                 clean_timesteps_emb=clean_timesteps_emb,
             )
             if return_routing_scores:
@@ -387,7 +386,7 @@ def hunyuan_transformer_3d_routed_forward(
                 token_replace_emb,
                 first_frame_num_tokens,
                 use_original_attn=False,
-                self_attention_kwargs=get_sta_attn_kwargs(self_attention_kwargs, transformer_block_index),
+                self_attention_kwargs=self_attention_kwargs,
                 clean_timesteps_emb=clean_timesteps_emb,
             )
             if return_routing_scores:

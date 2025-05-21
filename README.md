@@ -20,7 +20,6 @@ Install the dependencies:
 python -m pip install -r requirements.txt
 ```
 
-
 ## 🚀 Quick Start
 We use the genaral scripts to demonstrate the usage of our method. You can find the detailed scripts for each model in the `scripts` folder:
 - HunyuanVideo: [scripts/hunyuan/inference.sh](scripts/hunyuan/inference.sh)
@@ -35,10 +34,9 @@ CUDA_VISIBLE_DEVICES=0 python scripts/<model_name>/inference.py \
     --val_data_json_file prompt.json \
     --output_dir results/<model_name>/baseline \
     --native_attention \
+    --enable_cpu_offload \
     --seed 1234
 ```
-> - You can edit the `prompts.json` or the `--val_data_json_file` option to change the text prompt.
-> - See the source code `scripts/<model_name>/inference.py` or use `python scripts/<model_name>/inference.py --help` command for more detailed explanations of the arguments.
 
 
 Run the video DiTs with VORTA for acceleration:
@@ -52,8 +50,12 @@ CUDA_VISIBLE_DEVICES=0 python scripts/<model_name>/inference.py \
 -    --native_attention \
 +    --resume_dir results/<model_name>/train \
 +    --resume ckpt/step-000100 \
+    --enable_cpu_offload \
     --seed 1234
 ```
+
+> - You can edit the `prompts.json` or the `--val_data_json_file` option to change the text prompt.
+> - See the source code `scripts/<model_name>/inference.py` or use `python scripts/<model_name>/inference.py --help` command for more detailed explanations of the arguments.
 
 
 ## 🚧 TODO

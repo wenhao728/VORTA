@@ -15,12 +15,6 @@ class RoutedTransformerModelOutput(BaseOutput):
 
 
 @dataclass
-class BenchmarkedTransformerModelOutput(BaseOutput):
-    sample: torch.Tensor  # noqa: F821
-    benchmark_results: Optional[Dict[str, float]] = None
-
-
-@dataclass
 class VideoPipelineOutput(BaseOutput):
     r"""
     Output class for HunyuanVideo pipelines.
@@ -34,4 +28,3 @@ class VideoPipelineOutput(BaseOutput):
 
     frames: torch.Tensor
     routing_scores: Optional[List[List[torch.Tensor]]] = None
-    benchmark_results: Optional[Dict[str, Dict[str, float]]] = None

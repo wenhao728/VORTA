@@ -44,6 +44,7 @@ def sp_pipeline_call(
     ] = None,
     callback_on_step_end_tensor_inputs: List[str] = ["latents"],
     max_sequence_length: int = 512,
+    self_attention_kwargs = None,  # for compatibility with vorta_pipeline_call
 ):
     if SP_STATE.enabled and generator is None:
         # set generator if parallelism is enabled and not provided

@@ -110,11 +110,9 @@ def load_model(args: Namespace, device: torch.device):
     )
 
     pipeline: WanPipeline = WanPipeline.from_pretrained(
-        args.pretrained_model_path, 
-        transformer=transformer,
-        vae=vae,
-        scheduler=scheduler,
-        tokenizer=None, text_encoder=None,
+        args.pretrained_model_path, transformer=transformer, vae=vae, scheduler=scheduler,
+        # tokenizer=None, text_encoder=None,
+        torch_dtype=torch.bfloat16,
     )
     logger.info("Pipeline loaded")
 
@@ -131,6 +129,7 @@ def load_model(args: Namespace, device: torch.device):
         apply_vorta_transformer(
             pipeline.transformer,
             checkpoint_file=args.resume / 'router.pt',
+            router_dtype=torch.bfloat16,
         )
         self_attention_kwargs = prepare_wan_self_attn_kwargs(
             model_config['self_attention_kwargs'], device, args.tau_sparse)

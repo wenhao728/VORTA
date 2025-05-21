@@ -4,7 +4,7 @@
 @Created :   2025/03/09 19:35:41
 @Desc    :   
     2025/03/14: dataset QA passed
-    TODO: model, inference and train QA
+    2025/03/16: model, inference and train QA
 @Ref     :   
     https://github.com/hao-ai-lab/FastVideo/blob/main/fastvideo/train.py
 '''
@@ -239,8 +239,8 @@ def main():
         transformer, device_id=device,
         sharding_strategy=args.fsdp_sharding_startegy, use_cpu_offload=args.use_cpu_offload,
     )
-    num_trainable_params = sum(p.numel() for p in transformer.parameters() if p.requires_grad)
-    logger.info(f"Total trainable parameters per FSDP shard = {num_trainable_params:,}")
+    # num_trainable_params = sum(p.numel() for p in transformer.parameters() if p.requires_grad)
+    # logger.info(f"Total trainable parameters per FSDP shard = {num_trainable_params:,}")
 
     if args.gradient_checkpointing:
         transformer.enable_gradient_checkpointing()
