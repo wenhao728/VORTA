@@ -38,6 +38,13 @@ CUDA_VISIBLE_DEVICES=0 python scripts/<model_name>/inference.py \
     --seed 1234
 ```
 
+Download the ready-to-use router weights from [huggingface models](https://huggingface.co/anonymous728/VORTA).
+```bash
+git lfs install
+git clone git@hf.co:anonymous728/VORTA
+# mv VORTA/<model_name> results/, <model_name>: wan-14B, hunyuan; e.g.
+mv VORTA/wan-14B results/
+```
 
 Run the video DiTs with VORTA for acceleration:
 ```diff
