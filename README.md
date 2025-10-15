@@ -2,8 +2,15 @@
   VORTA: Efficient Video Diffusion via Routing Sparse Attention
 </h1>
 
+<p align="center">
+<a href="https://arxiv.org/abs/2505.18809"><img  src="https://img.shields.io/badge/arXiv-Paper-B31B1B.svg"></a>
+<a href="https://huggingface.co/Wenhao-Sun/VORTA"><img  src="https://img.shields.io/badge/🤗 download-weights-yellow"></a>
+<a href="https://opensource.org/license/mit/"><img  src="https://img.shields.io/badge/license-MIT-blue"></a>
+</p>
+
+
 > [!TIP]
-> **TL;DR** VORTA accelerates video diffusion transformers by sparse attention and dynamic routing, achieving up to 14.4× speedup with negligible quality loss.
+> **NeurIPS '25** VORTA accelerates video diffusion transformers by sparse attention and dynamic routing, achieving up to 14.4× speedup with negligible quality loss.
 
 
 <!-- ## 🎨 (WIP) Gallery -->
@@ -38,10 +45,10 @@ CUDA_VISIBLE_DEVICES=0 python scripts/<model_name>/inference.py \
     --seed 1234
 ```
 
-Download the ready-to-use router weights from [huggingface models](https://huggingface.co/anonymous728/VORTA).
+Download the ready-to-use router weights from [huggingface models](https://huggingface.co/Wenhao-Sun/VORTA).
 ```bash
 git lfs install
-git clone git@hf.co:anonymous728/VORTA
+git clone git@hf.co:Wenhao-Sun/VORTA
 # mv VORTA/<model_name> results/, <model_name>: wan-14B, hunyuan; e.g.
 mv VORTA/wan-14B results/
 ```
@@ -65,9 +72,23 @@ CUDA_VISIBLE_DEVICES=0 python scripts/<model_name>/inference.py \
 > - See the source code `scripts/<model_name>/inference.py` or use `python scripts/<model_name>/inference.py --help` command for more detailed explanations of the arguments.
 
 
-## 🚧 TODO
-- [ ] Attention kernel optimization for further hardware acceleration.
-- [ ] Release the processed dataset.
+## 📜 Citation
+If you find our work useful in your research, please consider citing:
+```bibtex
+@article{DBLP:journals/corr/abs-2505-18809,
+  author       = {Wenhao Sun and
+                  Rong{-}Cheng Tu and
+                  Yifu Ding and
+                  Zhao Jin and
+                  Jingyi Liao and
+                  Shunyu Liu and
+                  Dacheng Tao},
+  title        = {{VORTA:} Efficient Video Diffusion via Routing Sparse Attention},
+  journal      = {CoRR},
+  volume       = {abs/2505.18809},
+  year         = {2025}
+}
+```
 
 ## :hearts: Shout-out
 Thanks to the authors of the following repositories for their great works and open-sourcing the code and models: [Diffusers](https://github.com/huggingface/diffusers), [HunyuanVideo](https://github.com/Tencent/HunyuanVideo), [Wan 2.1](https://github.com/Wan-Video/Wan2.1), [FastVideo](https://github.com/hao-ai-lab/FastVideo)
